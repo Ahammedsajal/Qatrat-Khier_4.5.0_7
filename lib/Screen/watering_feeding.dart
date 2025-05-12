@@ -12,8 +12,7 @@ class WateringFeeding extends StatelessWidget {
   final bool fromSeller;
   final String? name;
 
-  const WateringFeeding({Key? key, this.fromSeller = false, this.name})
-      : super(key: key);
+  const WateringFeeding({super.key, this.fromSeller = false, this.name});
 
   @override
   Widget build(BuildContext context) {

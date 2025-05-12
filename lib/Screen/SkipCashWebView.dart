@@ -17,12 +17,12 @@ class SkipCashWebView extends StatefulWidget {
   final Function(String error) onError;
 
   const SkipCashWebView({
-    Key? key,
+    super.key,
     required this.payUrl,
     required this.paymentId,
     required this.onSuccess,
     required this.onError,
-  }) : super(key: key);
+  });
 
   @override
   State<SkipCashWebView> createState() => _SkipCashWebViewState();

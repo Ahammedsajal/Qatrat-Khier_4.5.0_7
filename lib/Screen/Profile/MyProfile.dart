@@ -149,10 +149,10 @@ class StateProfile extends State<MyProfile> with TickerProviderStateMixin {
 
   _getHeader() {
     return Padding(
-        padding: const EdgeInsetsDirectional.only(bottom: 10.0, top: 10),
+        padding: const EdgeInsetsDirectional.only(bottom: 1.0, top: 10),
         child: Container(
           padding: const EdgeInsetsDirectional.only(
-            start: 10.0,
+            start: 1.0,
           ),
           child: Row(
             children: [
@@ -238,7 +238,6 @@ class StateProfile extends State<MyProfile> with TickerProviderStateMixin {
                                         color: Theme.of(context)
                                             .colorScheme
                                             .primarytheme,
-                                        decoration: TextDecoration.underline,
                                       ),),
                               onTap: () {
                                 Navigator.pushNamed(
@@ -499,17 +498,15 @@ class StateProfile extends State<MyProfile> with TickerProviderStateMixin {
                 arguments: {
                   "home": true,
                 },);
-          }  else if (title == getTranslated(context, 'CONTACT_LBL')) {
-  Navigator.pushNamed(
-    context,
-    Routers.privacyPolicyScreen,
-    arguments: {
-      'title': getTranslated(context, 'CONTACT_LBL'),
-      'type': CONTACT_US, // <- You must define this constant
-    },
-  );
-}
- else if (title == getTranslated(context, 'CHAT')) {
+          } else if (title == getTranslated(context, 'CONTACT_LBL')) {
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => PrivacyPolicy(
+                    title: getTranslated(context, 'CONTACT_LBL'),
+                  ),
+                ),);
+          } else if (title == getTranslated(context, 'CHAT')) {
             Routes.navigateToConverstationListScreen(context);
           } else if (title == getTranslated(context, 'customer_SUPPORT')) {
             Navigator.push(

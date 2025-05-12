@@ -13,7 +13,6 @@ import 'package:customer/Model/Section_Model.dart';
 import 'package:customer/Model/message.dart';
 import 'package:customer/Provider/HomeProvider.dart';
 import 'package:customer/Provider/UserProvider.dart';
-import 'package:customer/Screen/FlashSale.dart';
 import 'package:customer/Screen/Profile/MyProfile.dart';
 import 'package:customer/Screen/about_us.dart';
 import 'package:customer/Screen/cart/Cart.dart';
@@ -29,10 +28,8 @@ import '../Provider/SettingProvider.dart';
 import '../app/routes.dart';
 import '../cubits/fetch_featured_sections_cubit.dart';
 import '../ui/styles/DesignConfig.dart';
-import 'All_Category.dart';
 import 'HomePage.dart';
 import 'package:customer/Screen/MyOrder.dart';
-import 'package:customer/Screen/Privacy_Policy.dart';
 import '../app/curreny_converter.dart';
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});

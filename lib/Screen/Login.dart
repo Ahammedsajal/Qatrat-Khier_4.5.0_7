@@ -255,7 +255,7 @@ Widget setCountryCodeAndMobile() {
         // ===== COUNTRY CODE PICKER =====
         Theme(
           data: Theme.of(context).copyWith(
-            dialogBackgroundColor: Theme.of(context).dialogBackgroundColor,
+            dialogTheme: DialogThemeData(backgroundColor: Theme.of(context).dialogBackgroundColor),
           ),
           child: CountryCodePicker(
             onChanged: (countryCode) {
@@ -862,7 +862,7 @@ Widget build(BuildContext context) {
             children: [
               // A base container to cover the full screen, making the stack occupy the whole view.
               SingleChildScrollView(
-                child: Container(
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                 ),

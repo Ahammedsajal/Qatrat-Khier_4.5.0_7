@@ -45,7 +45,7 @@ const Color kSecondaryColor = Color(0xFF1EBAAA);
 const Color kAccentColor = Color(0xFF247B88);
 
 class MostNeededMosques extends StatefulWidget {
-  const MostNeededMosques({Key? key}) : super(key: key);
+  const MostNeededMosques({super.key});
 
   @override
   _MostNeededMosquesState createState() => _MostNeededMosquesState();
@@ -219,14 +219,14 @@ class _ActionTile extends StatelessWidget {
   final double verticalPadding;
 
   const _ActionTile({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     required this.onTap,
     this.fontSize = 14,
     this.iconSize = 20,
     this.verticalPadding = 8,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

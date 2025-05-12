@@ -1866,7 +1866,7 @@ Widget deliveryProofImages(OrderModel model) {
                 }
 
                 final targetFileName = 'Invoice_${widget.model!.id}';
-                var generatedPdfFile;
+                File generatedPdfFile;
                 var filePath;
 
                 try {

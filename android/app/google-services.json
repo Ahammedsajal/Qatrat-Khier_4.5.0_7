@@ -8,51 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:388298698922:android:86c9c49d90ec8b09b0a0d3",
-        "android_client_info": {
-          "package_name": "com.qatra.deliveryboy"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "388298698922-t10m1fpf2s56bqeapp48e31qq3oi3v37.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.qatra.deliveryboy",
-            "certificate_hash": "e9a1c708b46431207ce62fae0d4925a615daa740"
-          }
-        },
-        {
-          "client_id": "388298698922-knjsni3mp584ddj7e3del1b40heisubh.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAkrc_R44PxJ9yFitNMWbp_IdTUiqYBpRs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "388298698922-7ig6qtlilul0b435aemgp5bk3s92639c.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "388298698922-frg9qq2gln7alrmf0nokvf0h0rhoroof.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.customersingle.customer",
-                "app_store_id": "6743666276"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:388298698922:android:a71fd2c6b73fe285b0a0d3",
         "android_client_info": {
           "package_name": "com.the8thmiracle.customer"
@@ -60,19 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "388298698922-15cqmn8esjo8v69ih8jmsdavpnnaenn5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.the8thmiracle.customer",
-            "certificate_hash": "e9a1c708b46431207ce62fae0d4925a615daa740"
-          }
-        },
-        {
           "client_id": "388298698922-41ssp76r0ebbmipf62fcctmn7eihhrt9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.the8thmiracle.customer",
             "certificate_hash": "fe5b75209d593272ed003c64528b6151e40a51bb"
+          }
+        },
+        {
+          "client_id": "388298698922-pjhn3n5cm3eklvv78poq6lkb8fbic9il.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.the8thmiracle.customer",
+            "certificate_hash": "6263f11cdd54c8ca32fd56344a62f2714e36d54a"
           }
         },
         {

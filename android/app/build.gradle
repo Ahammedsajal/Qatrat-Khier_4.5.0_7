@@ -1,10 +1,10 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" // Firebase plugin
 }
-
-apply plugin: 'com.google.gms.google-services' // ✅ Apply Firebase plugin
 
 android {
     namespace = "com.the8thmiracle.customer"
@@ -12,36 +12,44 @@ android {
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
         coreLibraryDesugaringEnabled true
+
     }
 
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     signingConfigs {
         release {
-            storeFile file("E:/The 8th miracle/Qatrat Kheir/QatratKheir/your_keystore_name.jks")
-            storePassword "the8thmiracle"
-            keyAlias "your_key_alias"
-            keyPassword "the8thmiracle"
+            // Update the path below if needed. Using forward slashes works well on Windows.
+storeFile file("C:/Users/Ahammed Sajal/QatratKheir/your_keystore_name.jks")
+
+            storePassword "the8thmiracle" // Replace with your actual store password
+            keyAlias "your_key_alias"           // Replace with your actual key alias
+            keyPassword "the8thmiracle"     // Replace with your actual key password
         }
     }
 
     defaultConfig {
+        // Specify your unique Application ID
         applicationId "com.the8thmiracle.customer"
         minSdk = 23
         targetSdk = 35
         versionCode flutter.versionCode
         versionName flutter.versionName
+
+        // Enable MultiDex if you're using a lot of dependencies
         multiDexEnabled true
     }
 
     buildTypes {
         release {
+            // Use the release signing configuration for production builds
             signingConfig signingConfigs.release
+            // Use ProGuard for release builds to optimize code
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -54,16 +62,15 @@ flutter {
 }
 
 dependencies {
-    // ✅ Core library desugaring (must be first or near top)
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
-
-    // Firebase
+    // Firebase BOM (manages all Firebase dependencies versions)
     implementation platform('com.google.firebase:firebase-bom:32.3.1')
+    
+    // Firebase dependencies
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
-    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-storage' // Optional for file uploads
 
-    // Multidex
+    // MultiDex support for apps with many methods
     implementation 'androidx.multidex:multidex:2.0.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 }
-

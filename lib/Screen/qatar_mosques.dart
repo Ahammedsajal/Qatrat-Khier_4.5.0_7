@@ -15,7 +15,7 @@ import 'MostNeededMosquesFromMap.dart';
 
 class QatarMosques extends StatefulWidget {
   final bool isFromCheckout;
-  const QatarMosques({Key? key, this.isFromCheckout = false}) : super(key: key);
+  const QatarMosques({super.key, this.isFromCheckout = false});
 
   @override
   _QatarMosquesState createState() => _QatarMosquesState();

@@ -1,0 +1,2 @@
+C:/Users/Ahammed Sajal/QatratKheir/android/app/.cxx/RelWithDebInfo/5o125q28/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Ahammed Sajal/QatratKheir/android/app/.cxx/RelWithDebInfo/5o125q28/arm64-v8a/CMakeFiles/rebuild_cache.dir

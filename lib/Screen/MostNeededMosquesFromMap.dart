@@ -42,7 +42,7 @@ import '../Screen/ProductList.dart';
 class MostNeededMosquesFromMap extends StatefulWidget {
   final List<MosqueModel> mosques;
 
-  const MostNeededMosquesFromMap({Key? key, required this.mosques}) : super(key: key);
+  const MostNeededMosquesFromMap({super.key, required this.mosques});
 
   @override
   _MostNeededMosquesFromMapState createState() => _MostNeededMosquesFromMapState();
@@ -201,14 +201,14 @@ class _ActionTile extends StatelessWidget {
   final double verticalPadding;
 
   const _ActionTile({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     required this.onTap,
     this.fontSize = 14,
     this.iconSize = 20,
     this.verticalPadding = 8,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

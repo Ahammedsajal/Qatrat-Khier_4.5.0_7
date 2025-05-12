@@ -594,7 +594,9 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
     setState(() {
       context.read<ProductDetailProvider>().setProNotiLoading(true);
       if (context.read<ProductDetailProvider>().offset <
-          context.read<ProductDetailProvider>().total) getProduct1();
+          context.read<ProductDetailProvider>().total) {
+        getProduct1();
+      }
     });
   }
 

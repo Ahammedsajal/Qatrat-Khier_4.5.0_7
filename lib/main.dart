@@ -1,4 +1,3 @@
-import 'package:customer/Helper/Color.dart';
 import 'package:customer/Helper/Constant.dart';
 import 'package:customer/Provider/CartProvider.dart';
 import 'package:customer/Provider/MosqueProvider.dart';
@@ -32,7 +31,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io'; // For native platforms
 import 'package:provider/single_child_widget.dart';
-import 'package:sqflite/sqflite.dart'; // ✅ Keep only `sqflite`, no `sqflite_common_ffi`
+// ✅ Keep only `sqflite`, no `sqflite_common_ffi`
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -47,7 +46,6 @@ import 'app/app_Localization.dart';
 import 'app/routes.dart';
 import 'firebase_options.dart';
 import 'app/curreny_converter.dart';
-import 'model/MosqueModel.dart'; 
 import 'cubits/FetchMosquesCubit.dart';
 
 /// App version

@@ -1957,7 +1957,7 @@ class BrandsListWidget extends StatelessWidget {
 
 class NeumorphicSections extends StatelessWidget {
   final bool minimal;
-  NeumorphicSections({this.minimal = false});
+  NeumorphicSections({super.key, this.minimal = false});
 
   final List<Map<String, dynamic>> sections = [
     {
@@ -1985,7 +1985,7 @@ class NeumorphicSections extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 0,
-          childAspectRatio: 1.2,
+          childAspectRatio: 1.3,
         ),
         itemCount: sections.length,
         itemBuilder: (context, index) {

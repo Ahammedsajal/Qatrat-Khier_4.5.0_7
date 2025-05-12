@@ -95,7 +95,7 @@ Future<bool> hasStoragePermissionGiven() async {
 Future<String> getExternalStoragePath() async {
   return Platform.isAndroid
       ? (await ExternalPath.getExternalStoragePublicDirectory(
-          'Download',))
+          'Download',)) // Corrected to use 'Download' as the directory name
       : (await getApplicationDocumentsDirectory()).path;
 }
 

@@ -360,7 +360,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
   Widget resendText() {
     return Padding(
       padding: const EdgeInsetsDirectional.only(
-          bottom: 30.0, start: 25.0, end: 25.0, top: 10.0,),
+          bottom: 10.0, start: 5.0, end: 25.0, top: 20.0,),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
