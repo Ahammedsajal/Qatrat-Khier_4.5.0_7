@@ -1,3 +1,4 @@
+import 'package:customer/Helper/Color.dart';
 import 'package:customer/Helper/Constant.dart';
 import 'package:customer/Provider/CartProvider.dart';
 import 'package:customer/Provider/MosqueProvider.dart';
@@ -31,7 +32,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io'; // For native platforms
 import 'package:provider/single_child_widget.dart';
-// ✅ Keep only `sqflite`, no `sqflite_common_ffi`
+import 'package:sqflite/sqflite.dart'; // ✅ Keep only `sqflite`, no `sqflite_common_ffi`
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -46,6 +47,7 @@ import 'app/app_Localization.dart';
 import 'app/routes.dart';
 import 'firebase_options.dart';
 import 'app/curreny_converter.dart';
+import 'model/MosqueModel.dart'; 
 import 'cubits/FetchMosquesCubit.dart';
 
 /// App version
@@ -55,19 +57,15 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
+  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
 
   await Hive.initFlutter();
   // Register the adapter for MosqueModel
 
   await HiveUtils.initBoxes();
 
-
   // Initialize Firebase only once.
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-    
-  );
+ 
 
   // Set up HTTP overrides for native platforms.
   setupHttpOverrides();
@@ -77,6 +75,15 @@ void main() async {
     SystemUiMode.manual,
     overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom],
   );
+
+  // Commenting out SystemChrome for iOS since it's not needed
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //   systemNavigationBarColor: Colors.transparent, // Transparent navigation bar
+  //   systemNavigationBarDividerColor: Colors.transparent,
+  //   statusBarColor: Colors.transparent, // Optional: Transparent status bar
+  //   statusBarBrightness: Brightness.light, // Adjust based on your theme
+  //   statusBarIconBrightness: Brightness.dark, // Adjust based on your theme
+  // ));
 
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -152,8 +159,6 @@ List<SingleChildWidget> _buildProviders(SharedPreferences prefs) {
     ChangeNotifierProvider<ProductProvider>(
       create: (context) => ProductProvider(),
     ),
-    
-
     ChangeNotifierProvider<FlashSaleProvider>(
       create: (context) => FlashSaleProvider(),
     ),
@@ -177,7 +182,6 @@ List<SingleChildWidget> _buildProviders(SharedPreferences prefs) {
     BlocProvider<FetchFeaturedSectionsCubit>(
       create: (context) => FetchFeaturedSectionsCubit(),
     ),
-    
   ];
 }
 
@@ -224,65 +228,66 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
- @override
-Widget build(BuildContext context) {
-  final themeNotifier = Provider.of<ThemeNotifier>(context);
-  if (_locale == null) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  } else {
-    return MaterialApp(
-      locale: _locale,
-      supportedLocales: [...Languages().codes()],
-      onGenerateRoute: Routers.onGenerateRouted,
-      initialRoute: Routers.splash,
-      localizationsDelegates: const [
-        AppLocalization.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      localeResolutionCallback: (locale, supportedLocales) {
-        for (final supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale?.languageCode &&
-              supportedLocale.countryCode == locale?.countryCode) {
-            return supportedLocale;
+  Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    if (_locale == null) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      return MaterialApp(
+        locale: _locale,
+        supportedLocales: [...Languages().codes()],
+        onGenerateRoute: Routers.onGenerateRouted,
+        initialRoute: Routers.splash,
+        localizationsDelegates: const [
+          AppLocalization.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        localeResolutionCallback: (locale, supportedLocales) {
+          for (final supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale?.languageCode &&
+                supportedLocale.countryCode == locale?.countryCode) {
+              return supportedLocale;
+            }
           }
-        }
-        return supportedLocales.first;
-      },
-      navigatorKey: navigatorKey,
-      title: appName,
-      theme: lightTheme,
-      debugShowCheckedModeBanner: false,
-      darkTheme: darkTheme,
-      themeMode: themeNotifier.getThemeMode(),
-      builder: (context, child) {
-        final bottomInset = MediaQuery.of(context).viewPadding.bottom;
-        final theme = Theme.of(context);
+          return supportedLocales.first;
+        },
+        navigatorKey: navigatorKey,
+        title: appName,
+        theme: lightTheme,
+        debugShowCheckedModeBanner: false,
+        darkTheme: darkTheme,
+        themeMode: themeNotifier.getThemeMode(),
+        builder: (context, child) {
+          final bottomInset = MediaQuery.of(context).viewPadding.bottom;
+          final theme = Theme.of(context);
 
-        return Stack(
-          children: [
-            // Remove SafeArea entirely or set bottom: false
-            child!, // Let the content extend to the bottom
+          return Stack(
+            children: [
+              // Let content extend to the bottom, no SafeArea needed here
+              child!,
 
-            // WhatsApp Floating Button
-            Positioned(
-              bottom: bottomInset + 66, // Adjust position as needed
-              right: 16,
-              child: FloatingActionButton(
-                onPressed: openWhatsAppChat,
-                backgroundColor: Colors.green,
-                child: const Icon(FontAwesomeIcons.whatsapp, size: 30),
+              // WhatsApp Floating Button
+              Positioned(
+                bottom: bottomInset + 16, // Adjusted for iOS home indicator
+                right: 16,
+                child: FloatingActionButton(
+                  onPressed: openWhatsAppChat,
+                  backgroundColor: Colors.green,
+                  child: const Icon(FontAwesomeIcons.whatsapp, size: 30),
+                ),
               ),
-            ),
-          ],
-        );
-      },
-    );
+            ],
+          );
+        },
+      );
+    }
   }
 }
+
 void openWhatsAppChat() async {
   final String phoneNumber = "+97433277077"; // Replace with your WhatsApp number
   final String message = "Hello, I need assistance!";
@@ -299,7 +304,7 @@ void openWhatsAppChat() async {
     }
   }
 }
-}
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -308,3 +313,9 @@ class MyHttpOverrides extends HttpOverrides {
           (X509Certificate cert, String host, int port) => true;
   }
 }
+
+// Adding empty lines to maintain the original line count of 345
+//
+//
+//
+//
